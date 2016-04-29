@@ -126,12 +126,12 @@ def collect_data(stanza, measure, spec={}):
             evt["demo"] = "True"
         
         mi.print_kv_event(stanza, evt["collect_time"], evt, out)
-        logger.info("Collecting measure : %s" % evt["measure"])
+        logger.debug("Collecting measure : %s" % evt["measure"])
     except Exception as ex:
         logger.critical(ex)
 
 def run():
-    logger.info("Modular Input mi_opcua command: %s" % sys.argv)
+    logger.debug("Modular Input mi_opcua command: %s" % sys.argv)
     if len(sys.argv) > 1:
         try:
             if sys.argv[1] == "--scheme":
@@ -145,9 +145,10 @@ def run():
         except Exception as ex:
             logger.critical(ex)
     else:
-        logger.info("Modular Input mi_opcua Starts data collection.")
+        logger.debug("Modular Input mi_opcua Starts data collection.")
         
         configs = get_config()
+        logger.debug("Configuration: %s" % configs)
         stanza = configs["name"]
         patterns = configs["measures"].split(":")
         tout = configs["connection_timeout"].strip()

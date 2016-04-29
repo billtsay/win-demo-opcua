@@ -137,7 +137,7 @@ class SubHandler(object):
             evt["collect_time"] = mi.current_milliseconds()
             evt["Message"] = event.Message.Text
             mi.print_kv_event(self.stanza, evt["collect_time"], evt, out)
-            logger.info("SourceNode %s Notified : %s." % (evt["SourceNode"], evt["Message"]))
+            logger.debug("SourceNode %s Notified : %s." % (evt["SourceNode"], evt["Message"]))
         except Exception as ex:
             logger.critical(ex)
         finally:
@@ -163,7 +163,7 @@ def get_config():
 
 
 def run():
-    logger.info("Modular Input mi_opcua_event command: %s" % sys.argv)
+    logger.debug("Modular Input mi_opcua_event command: %s" % sys.argv)
     if len(sys.argv) > 1:
         try:
             if sys.argv[1] == "--scheme":
@@ -177,9 +177,10 @@ def run():
         except Exception as ex:
             logger.critical(ex)
     else:
-        logger.info("Modular Input mi_opcua_event Starts data collection.")
+        logger.debug("Modular Input mi_opcua_event Starts data collection.")
         
         configs = get_config()
+        logger.debug("Configuration: %s" % configs)
         stanza = configs["name"]
         # server_uri = configs["server_uri"]
         # sessionKey = configs["session_key"]
@@ -255,10 +256,10 @@ def run():
         except Exception as ex:
             logger.critical(ex)
         finally:
-            logger.info("---- end of sub opc ua ----")
+            logger.info("---- end of sub opc ua event ----")
 
 if __name__ == '__main__':
-    logger.info("---- sub opc ua ----")
+    logger.info("---- sub opc ua event ----")
     try:
         run()
     except Exception as ex:

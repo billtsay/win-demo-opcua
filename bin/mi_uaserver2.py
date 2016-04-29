@@ -118,6 +118,7 @@ def run():
     logger.info("Start running.........")
     
     confs = get_config()
+    logger.debug("Configuration: %s" % confs)
     serverpath = confs["serverpath"]
     description = confs["description"]
     stanza = confs["name"]
@@ -157,6 +158,7 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, handler)
     signal.signal(signal.SIGABRT, handler)
     signal.signal(signal.SIGTERM, handler)
+    logger.debug("Modular Input mi_uaserver2 command: %s" % sys.argv)
 
     if len(sys.argv) > 1:
         if sys.argv[1] == "--scheme":
@@ -171,5 +173,6 @@ if __name__ == '__main__':
         else:
             usage()
     else:
+        logger.debug("Modular Input mi_uaserver2 Starts running.")
         run()
         
