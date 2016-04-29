@@ -15,8 +15,9 @@ import splunk_opcua.utils as utils
 
 import mi_uaserver2 as mi_uaserver
 
-os.environ["SPLUNK_HOME"] = "/home/btsay/Documents/splunk"
-os.environ["SPLUNK_DB"] = "/home/btsay/Documents/splunk/db"
+if not os.environ.has_key("SPLUNK_HOME"):
+    os.environ["SPLUNK_HOME"] = "/home/btsay/Documents/splunk"
+    os.environ["SPLUNK_DB"] = "/home/btsay/Documents/splunk/db"
 
 def setup_logging(app, level=logging.INFO):
     return logging.getLogger(app)

@@ -62,11 +62,11 @@ def do_scheme():
 
 def pycmd():
     p = os.path.realpath(__file__)
-    return os.path.abspath(os.path.join(p, os.pardir, "Python27", "python.exe"))
+    return os.path.abspath(os.path.join(p, os.pardir, os.pardir, "Python27", "python.exe"))
 
 def mi_uaserver2_py():
     p = os.path.realpath(__file__)
-    return os.path.abspath(os.path.join(p, "mi_uaserver2.py"))
+    return os.path.abspath(os.path.join(p, os.pardir, "mi_uaserver2.py"))
 
 
 if __name__ == '__main__':
