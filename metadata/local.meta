@@ -1,0 +1,34 @@
+[app/ui]
+owner = admin
+version = 6.3.1
+modtime = 1453316744.185705000
+
+[app/launcher]
+owner = admin
+version = 6.3.1
+modtime = 1453316744.187483000
+
+[app/package/check_for_updates]
+version = 6.3.1
+modtime = 1453316744.188341000
+
+[inputs/mi_opcua_subscription%3A%2F%2Fdefault]
+version = 6.3.1
+modtime = 1453350308.203362000
+
+[app/install/install_source_checksum]
+version = 6.4.0
+modtime = 1461881542.080366200
+
+[app/install/state]
+version = 6.4.0
+modtime = 1461887272.333657400
+
+[inputs/mi_win_opcua%3A%2F%2Flocaltest]
+version = 6.4.0
+modtime = 1461885397.825140100
+
+[inputs/mi_win_opcua_event%3A%2F%2FEventNotes]
+owner = admin
+version = 6.4.0
+modtime = 1461886073.140223700
