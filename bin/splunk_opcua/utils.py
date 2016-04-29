@@ -17,15 +17,17 @@ def create_logger_handler(fd, level, maxBytes=10240000, backupCount=5):
     handler.setLevel(level)
     return handler
 
-def setup_logging(app, level=logging.INFO):
+def setup_logging(app):
     logger = logging.Logger(app)
     try:
         LOG_FILENAME = os.path.join(os.environ.get('SPLUNK_HOME'), 'var','log','splunk','%s.log' % app)
-        logger.setLevel(level)
-        handler = create_logger_handler(LOG_FILENAME, level)
+        splogger = logging.getLogger('splunk')
+        logger.setLevel(splogger.level)
+        handler = create_logger_handler(LOG_FILENAME, splogger.level)
         logger.addHandler(handler)
     except:
         pass
+    
     return logger
 
 def get_config(config_str):

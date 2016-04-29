@@ -54,7 +54,6 @@ utils.setup_logging = mock.MagicMock(side_effect=setup_logging)
 
 mi_uaserver.get_config = mock.MagicMock(side_effect=get_configs)
 
-
 def test_mi_uaserver_run():
     patch("sys.stdin", StringIO("FOO"))
     patch("sys.stdout", new_callable=StringIO) 

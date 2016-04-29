@@ -5,8 +5,8 @@ Created on Jan 12, 2016
 '''
 
 import splunk_opcua.utils as utils
-logger = utils.setup_logging("opcua")
-
+import logging
+logger = utils.setup_logging("opcua")    
 import sys
 
 from splunk_opcua.ua import server
@@ -127,10 +127,14 @@ def run():
     namespace = confs["namespace"]
     interval = confs["interval"]
     endpoint = "opc.tcp://0.0.0.0:%s%s" % (serverport, serverpath)
-        
-    logger.info("Data File is loaded.")
-    
+
     nf = os.path.join(uaserver.data_dir(), nodefile)
+    if logger.isEnabledFor(logging.DEBUG):
+        if not os.path.exists(nf):
+            logger.debug("The node file %s does not exist!" % nf)
+        else:
+            logger.debug("The node file : %s" % nf)
+            
     with open(nf, 'rU') as fd:
         nodejson = json.load(fd)
         fd.close()

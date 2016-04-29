@@ -17,9 +17,6 @@ def test_mi_opcua_py():
 
 def test_mi_win_opcua_run():
     subprocess.call([pycmd(),  test_mi_opcua_py()], stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr, shell=False)
-    
-    
-     
         
 
 if __name__ == '__main__':
