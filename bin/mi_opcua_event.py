@@ -65,8 +65,8 @@ SCHEME = """
                 <required_on_edit>false</required_on_edit>
                 <required_on_create>false</required_on_create>
             </arg>
-
-             <!--
+            
+            <!--
             <arg name="events">
                 <title>Events</title>
                 <description>Events to collect from, can be wild cards.</description>

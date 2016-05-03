@@ -60,6 +60,13 @@ SCHEME = """
                 <required_on_create>false</required_on_create>
             </arg>
             
+            <arg name="separator">
+                <title>Node Tree Separator</title>
+                <description>The separator symbol to identify node level in the tree view.</description>
+                <required_on_edit>false</required_on_edit>
+                <required_on_create>false</required_on_create>
+            </arg>
+            
         </args>
     </endpoint>
 </scheme>

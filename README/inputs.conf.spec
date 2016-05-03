@@ -30,6 +30,10 @@ metrics_spec = <value>
 * Indicates the specification of metrics for displaying additional fields.
 * Leave it empty when no specification is defined.
 
+separator = <value>
+* Separator symbol to identify the node level in the tree view.
+* Leave it empty when use colon . as separator.
+
 [mi_win_opcua_event://default]
 
 description = <value>

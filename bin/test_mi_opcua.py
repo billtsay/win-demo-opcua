@@ -43,6 +43,17 @@ z["metrics_spec"] = "metrics2.json"
 z["connection_timeout"] = "300"
 z["measures"] = "O*:~Ser*"
 
+
+k = dict()
+k["name"] = "test"
+k["connection"] = "opc.tcp://192.168.208.187:4845"
+#z["connection"] = "opc.tcp://localhost:9988 -- urn:abc"
+#z["username"] = "bill"
+#z["password"] = "monday"
+k["metrics_spec"] = "metrics2.json"
+k["connection_timeout"] = "300"
+k["measures"] = "O*:Ser*"
+
 '''
 import urlparse
 
@@ -50,7 +61,7 @@ print urlparse.urlparse(y["connection"])
 '''
 
 def get_configs():
-    return y
+    return k
     #return y
 
 

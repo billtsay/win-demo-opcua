@@ -74,6 +74,13 @@ SCHEME = """
                 <required_on_edit>false</required_on_edit>
                 <required_on_create>false</required_on_create>
             </arg>
+
+            <arg name="separator">
+                <title>Node Tree Separator</title>
+                <description>The separator symbol to identify node level in the tree view.</description>
+                <required_on_edit>false</required_on_edit>
+                <required_on_create>false</required_on_create>
+            </arg>
             
         </args>
     </endpoint>
@@ -150,7 +157,8 @@ def run():
         configs = get_config()
         logger.debug("Configuration: %s" % configs)
         stanza = configs["name"]
-        patterns = configs["measures"].split(":")
+        SP = configs.get("separator", ":")
+        patterns = configs["measures"].split(SP)
         tout = configs["connection_timeout"].strip()
         spec = configs.get("metrics_spec", "n.a.").strip()
         timeout = 1 if len(tout) <= 0 else int(tout)
