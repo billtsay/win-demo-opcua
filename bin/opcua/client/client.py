@@ -88,10 +88,10 @@ class Client(object):
             # Siemens UA Server specific
             # ApplicationUri=Siemens/SimaticNet/OpcUaServer
             _url, _urn = url.split("--")
-            self.server_url = urlparse(_url.strip())
-            self.application_uri = _urn.strip()
+            self.server_url = urlparse(url)
+            self.application_uri = _urn.split()
             # urn:Siemens.Automation.SimaticNET.S7
-            self.product_uri = _urn.strip()
+            self.product_uri = "urn:Siemens.Automation.SimaticNET.S7"
             
         self.name = "Pure Python Client"
         self.description = self.name

@@ -27,7 +27,7 @@ x["measures"] = "O*:W*04:T*:T*"
 
 y = dict()
 y["name"] = "test"
-y["connection"] = "opc.tcp://10.1.10.46:53530/OPCUA/SimulationServer"
+y["connection"] = "opc.tcp://localhost:53530/OPCUA/SimulationServer"
 y["username"] = "bill"
 y["password"] = "monday"
 y["connection_timeout"] = "300"
@@ -50,7 +50,7 @@ print urlparse.urlparse(y["connection"])
 '''
 
 def get_configs():
-    return z
+    return y
     #return y
 
 
