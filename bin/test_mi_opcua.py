@@ -35,7 +35,8 @@ y["measures"] = "O*:S*:S*"
 
 z = dict()
 z["name"] = "test"
-z["connection"] = "opc.tcp://localhost:9988/splunk/uaserver2"
+#z["connection"] = "opc.tcp://localhost:9988/splunk/uaserver2"
+z["connection"] = "opc.tcp://localhost:9988 -- urn:abc"
 #z["username"] = "bill"
 #z["password"] = "monday"
 z["metrics_spec"] = "metrics2.json"
