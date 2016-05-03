@@ -9,7 +9,6 @@ Created on Jan 12, 2016
 import logging
 import splunk_opcua.utils as utils
 logger = utils.setup_logging("opcua")
-logger.setLevel(logging.DEBUG)
 
 import os
 import uaserver as ua
