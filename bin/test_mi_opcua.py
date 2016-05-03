@@ -14,7 +14,7 @@ from StringIO import StringIO
 
 import splunk_opcua.utils as utils
 
-def setup_logging(app, level=logging.INFO):
+def setup_logging(app, level=logging.DEBUG):
     return logging.getLogger(app)
 
 
@@ -30,17 +30,17 @@ y["name"] = "test"
 y["connection"] = "opc.tcp://10.1.10.46:53530/OPCUA/SimulationServer"
 y["username"] = "bill"
 y["password"] = "monday"
-y["connection_timeout"] = "30"
+y["connection_timeout"] = "300"
 y["measures"] = "O*:S*:S*"
 
 z = dict()
 z["name"] = "test"
-#z["connection"] = "opc.tcp://localhost:9988/splunk/uaserver2"
-z["connection"] = "opc.tcp://localhost:9988 -- urn:abc"
+z["connection"] = "opc.tcp://localhost:9988/splunk/uaserver2"
+#z["connection"] = "opc.tcp://localhost:9988 -- urn:abc"
 #z["username"] = "bill"
 #z["password"] = "monday"
 z["metrics_spec"] = "metrics2.json"
-z["connection_timeout"] = "30"
+z["connection_timeout"] = "300"
 z["measures"] = "O*:~Ser*"
 
 '''

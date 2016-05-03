@@ -6,9 +6,10 @@ Created on Jan 12, 2016
 #import os
 #os.environ["SPLUNK_HOME"] = "/home/btsay/Documents/splunk/"
 
-
+import logging
 import splunk_opcua.utils as utils
 logger = utils.setup_logging("opcua")
+logger.setLevel(logging.DEBUG)
 
 import os
 import uaserver as ua
@@ -167,8 +168,47 @@ def run():
 
         mi.init_stream(sys.stdout)
         try:
-            logger.info("Start connecting OPC Server [%s]." % conn)
-            client.connect()
+            if logger.isEnabledFor(logging.DEBUG):
+                try:
+                    servers = client.connect_and_find_servers()
+                    logger.debug("Servers are found: ")
+                    for s in servers:
+                        print s
+                        logger.debug("\tServer: %s" % s)
+                except:
+                    pass
+                
+                try:    
+                    nservers = client.connect_and_find_servers_on_network()
+                    logger.debug("Network Servers are found: ")
+                    for n in nservers:
+                        logger.debug("\tNetwork Server: %s" % n)
+                except:
+                    pass
+                
+                try:
+                    endpoints = client.connect_and_get_server_endpoints()
+                    logger.debug("Server Endpoints are found: ")                    
+                    for e in endpoints:
+                        print e
+                        logger.debug("\tServer Endpoint: %s" % e.EndpointUrl)
+                        logger.debug("\t\tServer Details: %s" % e)
+                except:
+                    pass
+                
+            try:
+                logger.info("Start connecting OPC Server [%s]." % conn)
+                client.connect()
+            except Exception as ex:
+                logger.error("Connecting to [%s] failed." % conn)
+                if len(endpoints)>0:
+                    conn = endpoints[0].EndpointUrl
+                    logger.info("Try connect to another OPC Server [%s]." % conn)
+                    client = Client(conn, timeout=timeout)
+                    client.connect()
+                else:
+                    raise ex
+                
             logger.info("OPC Server [%s] is connected." % conn)
             measures = []
             root = client.get_root_node()

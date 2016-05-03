@@ -83,14 +83,18 @@ class Client(object):
             self.server_url = urlparse(url)
             int(self.server_url.port)
             self.application_uri = "urn:freeopcua:client"
+            self.product_uri = "urn:freeopcua.github.no:client"
         except:
+            # Siemens UA Server specific
+            # ApplicationUri=Siemens/SimaticNet/OpcUaServer
             _url, _urn = url.split("--")
             self.server_url = urlparse(_url.strip())
             self.application_uri = _urn.strip()
+            # urn:Siemens.Automation.SimaticNET.S7
+            self.product_uri = _urn.strip()
             
         self.name = "Pure Python Client"
         self.description = self.name
-        self.product_uri = "urn:freeopcua.github.no:client"
         self.security_policy = ua.SecurityPolicy()
         self.secure_channel_id = None
         self.default_timeout = 3600000
