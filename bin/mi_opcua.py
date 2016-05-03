@@ -185,6 +185,7 @@ def run():
                 except:
                     pass
                 
+                endpoints = None
                 try:
                     endpoints = client.connect_and_get_server_endpoints()
                     logger.debug("Server Endpoints are found: ")                    
@@ -198,17 +199,22 @@ def run():
             try:
                 logger.info("Start connecting OPC Server [%s]." % conn)
                 client.connect()
+                logger.info("OPC Server [%s] is connected." % conn)
             except Exception as ex:
                 logger.error("Connecting to [%s] failed." % conn)
-                if len(endpoints)>0:
-                    conn = endpoints[0].EndpointUrl
-                    logger.info("Try connect to another OPC Server [%s]." % conn)
-                    client = Client(conn, timeout=timeout)
-                    client.connect()
+                if endpoints and len(endpoints)>0:
+                    for ep in endpoints:
+                        try:
+                            conn = ep.EndpointUrl
+                            logger.info("Try connect to another OPC Server [%s]." % conn)
+                            client = Client(conn, timeout=timeout)
+                            client.connect()
+                            logger.info("OPC Server [%s] is connected." % conn)
+                        except:
+                            break
                 else:
                     raise ex
                 
-            logger.info("OPC Server [%s] is connected." % conn)
             measures = []
             root = client.get_root_node()
             
