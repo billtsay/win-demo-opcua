@@ -198,7 +198,6 @@ def run():
                     endpoints = client.connect_and_get_server_endpoints()
                     logger.debug("Server Endpoints are found: ")                    
                     for e in endpoints:
-                        print e
                         logger.debug("\tServer Endpoint: %s" % e.EndpointUrl)
                         logger.debug("\t\tServer Details: %s" % e)
                 except:

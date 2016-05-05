@@ -52,7 +52,8 @@ k["connection"] = "opc.tcp://192.168.208.187:4845"
 #z["password"] = "monday"
 k["metrics_spec"] = "metrics2.json"
 k["connection_timeout"] = "300"
-k["measures"] = "O*:Ser*"
+k["measures"] = "O*.Ser*"
+k["separator"] = "."
 
 '''
 import urlparse
