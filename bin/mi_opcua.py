@@ -121,15 +121,45 @@ def collect_data(stanza, measure, spec={}):
         evt["status"] = data.StatusCode.name
         evt["data_type"] = data.Value.VariantType.name
         
-        try:
+        '''
+    :ivar Null:
+    :ivar Boolean:
+    :ivar SByte:
+    :ivar Byte:
+    :ivar Int16:
+    :ivar UInt16:
+    :ivar Int32:
+    :ivar UInt32:
+    :ivar Int64:
+    :ivar UInt64:
+    :ivar Float:
+    :ivar Double:
+    :ivar String:
+    :ivar DateTime:
+    :ivar Guid:
+    :ivar ByteString:
+    :ivar XmlElement:
+    :ivar NodeId:
+    :ivar ExpandedNodeId:
+    :ivar StatusCode:
+    :ivar QualifiedName:
+    :ivar LocalizedText:
+    :ivar ExtensionObject:
+    :ivar DataValue:
+    :ivar Variant:
+    :ivar DiagnosticInfo:
+        '''
+        if evt["data_type"] in ["Float", "Double"]:
             evt["value"] = utils.format_float(data.Value.Value)
             logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
-        except:
-            try:
-                evt["value"] = str(data.Value.Value)
-                logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
-            except Exception as ex:
-                logger.critical("Unable to convert the data value, the original value is %s" % data.Value.Value)   
+            
+        elif evt["data_type"] in ["Int64", "String", "DateTime", "Guid", "Int32", "UInt32", 
+                                  "Boolean", "Int16", "UInt16", "UInt64", "StatusCode", 
+                                  "LocalizedText", "ExpendedNodeId", "QualifiedName"]:
+            evt["value"] = str(data.Value.Value)
+            logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
+        else:
+            logger.critical("Unable to convert the data value, the original value is %s" % data.Value.Value)   
             
         if spec.has_key(evt["measure"]):
             m = spec[evt["measure"]]
