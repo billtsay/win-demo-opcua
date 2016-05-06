@@ -155,7 +155,7 @@ def collect_data(stanza, measure, spec={}):
             
         elif evt["data_type"] in ["Int64", "String", "DateTime", "Guid", "Int32", "UInt32", 
                                   "Boolean", "Int16", "UInt16", "UInt64", "StatusCode", 
-                                  "LocalizedText", "ExpendedNodeId", "QualifiedName"]:
+                                  "LocalizedText", "ExpendedNodeId", "QualifiedName", "Byte", "SByte"]:
             evt["value"] = str(data.Value.Value)
             logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
         else:
