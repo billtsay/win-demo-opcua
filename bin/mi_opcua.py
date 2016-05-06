@@ -120,8 +120,17 @@ def collect_data(stanza, measure, spec={}):
         evt["measure"] = measure.get_display_name().Text
         evt["status"] = data.StatusCode.name
         evt["data_type"] = data.Value.VariantType.name
-        evt["value"] = utils.format_float(data.Value.Value)
         
+        try:
+            evt["value"] = utils.format_float(data.Value.Value)
+            logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
+        except:
+            try:
+                evt["value"] = str(data.Value.Value)
+                logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
+            except Exception as ex:
+                logger.critical("Unable to convert the data value, the original value is %s" % data.Value.Value)   
+            
         if spec.has_key(evt["measure"]):
             m = spec[evt["measure"]]
             evt["unit"] = m["unit"]
