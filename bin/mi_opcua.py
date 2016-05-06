@@ -159,7 +159,7 @@ def collect_data(stanza, measure, spec={}):
             evt["value"] = str(data.Value.Value)
             logger.debug("The value collected is %s = %s" % (evt["measure"], evt["value"]))
         else:
-            logger.critical("Unable to convert the data value, the original value is %s" % data.Value.Value)   
+            logger.critical("Unable to convert the data value, the original value is %s=%s" % (evt["data_type"], data.Value.Value))   
             
         if spec.has_key(evt["measure"]):
             m = spec[evt["measure"]]
